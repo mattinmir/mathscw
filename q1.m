@@ -6,7 +6,7 @@ tf= 1;
 
 t = 1 : round(tf/h) +1;
 
-Vout = HeunRL(@sinewave, R, L, h, i0, tf);
+Vout = HeunRL(@decay, R, L, h, i0, tf);
 plot(t*h, Vout, 'linewidth', 2);
 xlabel('Time (s)');
 ylabel('Voltage (V)');
