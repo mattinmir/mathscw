@@ -1,7 +1,7 @@
-function Vout = HeunRL(Vin , R , L ,h, i0, tf)
+function Vout = HeunRL(Vin , R , L ,h, io, tf)
 
     N = round(tf/h); % Number of steps is total time over step size
-    i(1) = i0;
+    i(1) = io;
 
     for t =1:N
         iGrad = (Vin(t*h) - R*i(t)) / L; % Rearrange given eqn to get i' = (Vin-Ri)/L
