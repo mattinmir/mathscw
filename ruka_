@@ -1,0 +1,22 @@
+function [x, y] =ruka_(func_1,func_2,ti,xi,yi,h)
+
+k_x1=feval(func_1,ti,xi,yi); 
+k_y1=feval(func_2,ti,xi,yi);
+
+k_x2=feval(func_1,ti+(1/2)*h,xi+(1/2)*h*k_x1,yi+(1/2)*h*k_y1);
+k_y2=feval(func_2,ti+(1/2)*h,xi+(1/2)*h*k_x1,yi+(1/2)*h*k_y1);
+
+k_x3=feval(func_1,ti+(1/2)*h,xi+(1/2)*h*k_x2,yi+(1/2)*h*k_y2);
+k_y3=feval(func_2,ti+(1/2)*h,xi+(1/2)*h*k_x2,yi+(1/2)*h*k_y2);
+
+k_x4=feval(func_1,ti+h,xi+h*k_x3,yi+h*k_y3);
+k_y4=feval(func_2,ti+h,xi+h*k_x3,yi+h*k_y3);
+
+phi_x=(1/6)*k_x1+(1/3)*k_x2+(1/3)*k_x3+(1/6)*k_x4;
+phi_y=(1/6)*k_y1+(1/3)*k_y2+(1/3)*k_y3+(1/6)*k_y4;
+
+ x=xi+h*phi_x;
+ y =yi+h*phi_y;
+
+
+
