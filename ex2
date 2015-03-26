@@ -1,0 +1,26 @@
+clear all
+
+q = 500E-9;
+i = 0;
+Vin = @steps;
+
+L = 0.600;
+
+R = 250;
+
+h = 0.0001;
+
+t = 0;
+
+tf = 0.05;
+
+C = 3.5E-6;
+
+Vout = LCR(Vin, q, i, t, L, C, R, h, tf);
+
+t1 = (0:h:tf);
+
+plot(t1, Vout);
+grid on;
+xlabel('Time (s)');
+ylabel('Voltage (V)');

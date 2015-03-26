@@ -1,0 +1,22 @@
+function [x,y] = van_der_pol(func1, func2, t, x0, y0, h, tf);
+
+t = 0;
+N = round((tf -t)/h);
+
+x(1) = x0;
+y(1) = y0;
+
+
+for j = 1:N
+    [a,b] = ruka_mat(func1, func2, t, x(j), y(j), h);
+    x(j+1) = a;
+    y(j+1) = b;
+    t = t + h;
+end
+
+%plot(x);
+
+
+
+    
+    
