@@ -1,0 +1,88 @@
+%error analysis
+clear all
+R = 0.5;
+L = 1.5e-3; %Inductor value
+h = 0.0001;% Step size
+i_0 = 0; %Initial current
+t_f = 0.1; %Length of time for the programme to run for
+T = 60e-3; %Time period
+a = (2*pi*(1/T)); 
+b = R/L;
+V0 = 5;
+
+
+N=round((t_f)/h);
+
+    
+    N=round((t_f)/h);
+    t = (0:h:(N*h));
+   
+  
+%     
+%     f = 1/60E-3;
+%     v_in = @(t) 5*square(2*pi*f*t);
+%     v_out1 = huenRL(v_in, R, L, h, i_0, t_f);
+%    % v_exact = (V0*sin(a*t))-((b*V0)*(b*sin(a*t)- a*cos(a*t)+a*exp(-b*t))*(1/(a^2 + b^2)));
+%     plot(t , v_out1 , 'b', t , 5*square(2*pi*f*t) , 'r');
+%     legend('Output' , 'Input');
+%     grid on;
+%     xlabel('Time (s)');
+%     ylabel('Voltage (v)');
+%     title('RL output for a square wave input');
+    
+      
+    a = (2*pi*(1/T)); 
+    b = R/L;
+    
+    h_0 = 1E-7;
+   for i = 1:50000
+    
+       
+    
+    N=round((t_f)/h);
+    t = (0:h:(N*h));
+    v_in = @(t) 5*sin(2*pi*(1/T)*t);
+    v_out = huenRL(v_in, R, L, h, i_0, t_f);
+    v_exact = (V0*sin(a*t))-((b*V0)*(b*sin(a*t)- a*cos(a*t)+a*exp(-b*t))*(1/(a^2 + b^2)));
+    
+    error(i) = v_exact(2) - v_out(2);
+    %e(i) = mean(error);
+    h = h+h_0;
+end
+
+h = h_0 : h_0 : 50000*h_0;
+%{
+plot(t, v_exact, 'r-', t, v_out, 'b-')
+title('Heun Method Solution vs Exact Solution ')
+xlabel('Time/ms')
+ylabel('Vout/V')
+legend('Exact Solution', 'Heun Method Solution')
+%}
+plot(log10(h), log10(error), 'b*');
+grid on
+title('Local Truncation error for Huens method')
+xlabel('log(h)')
+ylabel('log(e)')
+        
+    
+%     v_in = @(t) 5*sin(2*pi*(300E-6)*t);
+%     v_out1 = huenRL(v_in, R, L, h, i_0, t_f);
+%     v_in = @(t) 5*sin(2*pi*(3E-3)*t);
+%     v_out2 = huenRL(v_in, R, L, h, i_0, t_f);
+%     v_in = @(t) 5*sin(2*pi*(60E-3)*t);
+%     v_out3 = huenRL(v_in, R, L, h, i_0, t_f);
+% %     v_in = @(t) 1*steps(t);
+% %     v_out4 = huenRL(v_in, R, L, h, i_0, t_f);
+% %     hold on
+%     plot(t , v_out1, 'r-', t, v_out2, 'b-', t, v_out3, 'k-' );
+%     grid on;
+%     xlabel('Time (s)');
+%     ylabel('Voltage (v)');
+%     title('RL output voltage for different sinusoidal inputs with varying time periods');
+%     legend('T = 300uS' ,'T = 60mS', 'T = 3mS');
+%     
+  
+  %  v_exact = (V0*sin(a*t))-((b*V0)*(b*sin(a*t)- a*cos(a*t)+a*exp(-b*t))*(1/(a^2 + b^2)));
+  
+
+    
