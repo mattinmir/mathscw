@@ -1,3 +1,3 @@
 function y = impulsive(t)
-   y = 5 * exp(-(t*t)/3e-3);
+   y = 5 * exp(-(t.^2)/3e-6);
 end

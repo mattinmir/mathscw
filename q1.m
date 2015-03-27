@@ -5,7 +5,7 @@ h=0.0002;
 i0=0;
 tf=0.1;
 
-  N=round((tf)/h);
+ N=round((tf)/h);
  t = (0:h:(N*h));
 
 Vout = HeunRL(@sinewave, R, L, h, i0, tf);
