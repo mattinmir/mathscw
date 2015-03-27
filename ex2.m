@@ -1,23 +1,27 @@
 clear all
 
-q = 500E-9;
-i = 0;
-Vin = @fivevolt;
+q0 = 500E-9;
+i0 = 0;
+Vin = @impulsive;
 
-R = 250;
+
 C = 3.5E-6;
 L = 0.600;
-
+R = 250;
 
 h = 0.0001;
 t = 0;
 tf = 0.05;
 
+zeta = (R/2)*(sqrt(C/L));
 
-Vout = LCR(Vin, q, i, t, L, C, R, h, tf);
+
+Vout1 = LCR(Vin, q0, i0, t, L, C, R, h, tf);
+
 
 t1 = (0:h:tf);
 
-plot(t1, Vout, 'linewidth', 1.5);
+plot(t1, Vout1,'linewidth' , 1.5);
 xlabel('Time (s)');
 ylabel('Voltage (V)');
+title('RLC Circuit with 5V Sinudoidal Input');

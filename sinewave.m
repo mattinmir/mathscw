@@ -1,3 +1,3 @@
 function y = sinewave(t)
-   y = 5 * sin(t * (2*pi)/60e-3);
+   y = 5 * sin(2*pi*109*t);
 end
