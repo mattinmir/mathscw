@@ -2,7 +2,8 @@ function [x,y] = van_der_pol(func1, func2, t, x0, y0, h, tf);
 
 t = 0;
 N = round((tf -t)/h);
-
+x = zeros(1,N);
+y = zeros(1,N);
 x(1) = x0;
 y(1) = y0;
 
