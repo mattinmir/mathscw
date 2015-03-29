@@ -2,11 +2,11 @@ clear all
 
 q0 = 500E-9;
 i0 = 0;
-Vin = @sinewave;
+Vin = @fivevolt;
 
 C = 3.5E-6;
 L = 0.600;
-R = 12/sqrt(C/L);
+R = 250;
 
 h = 0.0001;
 t = 0;
@@ -26,5 +26,5 @@ t1 = (0:h:tf);
 
 xlabel('Time (s)');
 ylabel('Current (A)');
-title('RLC Circuit with 5V Sine Wave Input, f = 500Hz');
+title('RLC Circuit with 5V Heaviside Input');
 %legend('output', 'input');

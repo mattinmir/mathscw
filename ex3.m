@@ -3,16 +3,16 @@ clc;
 close all;
 h = 0.01;
 tf = 50;
-e = 8.53;
+e = 0.001;
 t = 0:h:tf;
 x0 =0.5;
 y0 = 0.000;
 x = x0;
 y = y0;
-f = 0.1;
+f = 0.5;
 A=1;
-for A = 1
-    Vin = @(t)  A*sin(2*pi*f*t);
+for e= 0 
+    Vin = @(t) A*sin(2*pi*f*t);
     func1 = @(t , x, y)(y);
     func2 = @(t , x, y)(e*(1-(x*x))*y - x + Vin(t));
     [x,y] = van_der_pol(func1, func2, t, x0, y0, h, tf);
